@@ -1,0 +1,5 @@
+const assert = require('node:assert/strict');
+const {claims,topics,verdictClass}=require(process.argv[2] || '../.content-check/claims.js');
+const ids=new Set();
+for(const c of claims){assert.match(c.slug,/^[a-z0-9]+(?:-[a-z0-9]+)*$/);assert(!ids.has(c.slug),`Duplicate slug: ${c.slug}`);ids.add(c.slug);assert(topics.includes(c.topic));assert(c.verdict in verdictClass);for(const field of ['title','context','statisticTrap','assessment','response','caveat','question'])assert(c[field]?.trim(),`${c.slug}: ${field}`);assert(c.sources.length && c.evidence.length);for(const s of c.sources){assert.equal(new URL(s.url).protocol,'https:');assert(s.name&&s.publisher&&s.year)}for(const e of c.evidence){assert(Number.isInteger(e.source)&&e.source>=0&&e.source<c.sources.length,`${c.slug}: invalid evidence source`);assert(e.value&&e.label&&e.detail)}}
+console.log(`Validated ${claims.length} dossiers, ${topics.length} topics, ${new Set(claims.flatMap(c=>c.sources.map(s=>s.url))).size} distinct source URLs.`);
