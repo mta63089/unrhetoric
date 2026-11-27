@@ -2,8 +2,8 @@
 export function installScrollMotion(): () => void {
  const root = document.documentElement;
  const media = window.matchMedia('(prefers-reduced-motion: reduce)');
- const revealSelector = '.edition-feature,.edition-topic,.edition-end,.library-title,.claim-row,.reader-section,.reader-fact,.reader-response,.reader-caveat,.source-list>a,.reader-related>a,.reader-next,.standards article';
- const artSelector = '.edition-heading,.edition-feature,.edition-topic,.reader-question';
+ const revealSelector = '.edition-feature,.edition-topic,.edition-end,.library-title,.claim-row,.reader-section,.reader-next,.standards article';
+ const artSelector = '.edition-heading,.edition-feature,.edition-topic';
  const watched = new Set<HTMLElement>();
  let art: HTMLElement[] = [], sections: HTMLElement[] = [], nav: HTMLAnchorElement[] = [];
  let frame = 0, active = '';
