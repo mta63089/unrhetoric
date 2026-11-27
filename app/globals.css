@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
+/* Design tokens shared by Tailwind utilities and the scroll-motion system. */
 @theme {
-  --color-paper: #fffaf0;
+  --color-paper: #fff4df;
   --color-ink: #25183a;
   --color-accent: #006f68;
   --color-muted: #655c68;
@@ -260,5 +261,108 @@
   }
   .scroll-progress {
     display: none;
+  }
+}
+
+/* V5 artwork: static layout is expressed in JSX; these rules are motion only. */
+.edition-symbol {
+  transform: translate3d(0, var(--drift), 0) rotate(var(--turn));
+  transition: transform 0.12s linear;
+  will-change: transform;
+  animation: editorial-bob 5s ease-in-out infinite;
+}
+.edition-topic:nth-of-type(even) .edition-symbol {
+  animation-delay: -2s;
+}
+.edition-topic:hover .edition-symbol {
+  transform: translate3d(0, var(--drift), 0) rotate(calc(var(--turn) + 22deg))
+    scale(1.12);
+  animation-play-state: paused;
+}
+.feature-motif {
+  transform: translate3d(0, var(--drift), 0) rotate(calc(-13deg + var(--turn)));
+}
+.feature-motif i {
+  animation: editorial-orbit 9s linear infinite;
+}
+.feature-motif i:nth-child(2) {
+  animation-direction: reverse;
+}
+.feature-motif i:nth-child(3) {
+  animation-duration: 14s;
+}
+.feature-motif span {
+  animation: editorial-bob 4s ease-in-out infinite;
+}
+@keyframes editorial-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes editorial-bob {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: -8deg;
+  }
+  50% {
+    translate: 0 -12px;
+    rotate: 8deg;
+  }
+}
+.reader-fact.scroll-reveal {
+  --reveal-cut: inset(0 0 100% 0);
+  --reveal-y: 30px;
+}
+.reader-fact.scroll-seen strong {
+  animation: kinetic-number 1.05s var(--motion-ease) both;
+  animation-delay: calc(var(--reveal-delay) + 160ms);
+}
+.reader-response.scroll-reveal {
+  --reveal-cut: inset(0 100% 0 0);
+  --reveal-x: -18px;
+  --reveal-y: 18px;
+}
+.reader-caveat.scroll-reveal {
+  --reveal-cut: inset(0 0 0 100%);
+  --reveal-x: 18px;
+  --reveal-y: 12px;
+}
+@keyframes kinetic-number {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(20px) scale(0.92);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(-10% -8% -15% -8%);
+    transform: none;
+    opacity: 1;
+  }
+}
+@media (max-width: 640px) {
+  .edition-symbol {
+    transform: translate3d(0, calc(var(--drift) * 0.55), 0)
+      rotate(calc(var(--turn) * 0.6));
+  }
+}
+.motion-paused .edition-symbol,
+.motion-paused .feature-motif {
+  transform: none !important;
+  translate: none !important;
+  rotate: none !important;
+}
+.motion-paused .feature-motif {
+  opacity: 0.43 !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .edition-symbol,
+  .feature-motif {
+    transform: none !important;
+    translate: none !important;
+    rotate: none !important;
+  }
+  .feature-motif {
+    opacity: 0.43 !important;
   }
 }
