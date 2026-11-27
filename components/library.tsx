@@ -166,7 +166,7 @@ export function Home() {
       </span>
       <span
         aria-hidden='true'
-        className={`edition-symbol pointer-events-none absolute -right-[6%] text-[125px] leading-[.8] font-black opacity-22 min-[641px]:text-[clamp(100px,15vw,230px)] ${i === 8 ? "-top-[35%]" : "top-[22%]"}`}
+        className={`edition-symbol pointer-events-none absolute right-[-6%] text-[125px] leading-[.8] font-black opacity-22 min-[641px]:text-[clamp(100px,15vw,230px)] ${i === 8 ? "top-[-35%]" : "top-[22%]"}`}
       >
         {topicArt[i]}
       </span>
@@ -239,12 +239,12 @@ export function Home() {
           <article className='edition-feature @container relative isolate col-span-6 row-span-4 flex min-h-80 flex-col justify-between gap-8 overflow-hidden rounded-xs border border-ink bg-accent p-3 text-paper min-[641px]:row-span-3 min-[641px]:p-6 min-[901px]:col-span-5 min-[901px]:row-span-4'>
             <span className={metaClass}>In focus / {featured.topic}</span>
             <div
-              className='feature-motif pointer-events-none absolute top-[6%] -right-[8%] -z-10 grid aspect-square w-[68%] place-items-center opacity-43 min-[641px]:max-[900px]:top-0 min-[641px]:max-[900px]:right-0 min-[641px]:max-[900px]:w-[48%]'
+              className='feature-motif pointer-events-none absolute top-[6%] right-[-8%] -z-10 grid aspect-square w-[68%] place-items-center opacity-43 min-[641px]:max-[900px]:top-0 min-[641px]:max-[900px]:right-0 min-[641px]:max-[900px]:w-[48%]'
               aria-hidden='true'
             >
               <i className='absolute inset-[4%] rounded-full border-2 border-sky' />
               <i className='absolute inset-[13%] rounded-full border-2 border-dashed border-sky' />
-              <i className='absolute inset-[23%] rounded-full border-[18px] border-double border-pink' />
+              <i className='absolute inset-[23%] rounded-full border-18 border-double border-pink' />
               <span className='text-[clamp(110px,20vw,280px)] leading-none font-black text-pink'>
                 ?
               </span>
