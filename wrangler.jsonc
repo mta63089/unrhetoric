@@ -1,0 +1,9 @@
+{
+  "name": "unrhetoric",
+  "compatibility_date": "2026-11-26",
+  "assets": {
+    "directory": "./out",
+    "html_handling": "force-trailing-slash",
+    "not_found_handling": "404-page",
+  },
+}
